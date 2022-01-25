@@ -13,10 +13,15 @@ public class PokemonService {
 	RestTemplate restTemplate;
 	
 	public Pokemon getPokemon(String nombre) {
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("user-agent", "Application");
+//		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<String> entity = new HttpEntity<>(headers);
         ResponseEntity<Pokemon> response =
                 restTemplate.getForEntity(
                 "https://pokeapi.co/api/v2/pokemon/" + nombre,
-                Pokemon.class);
+                Pokemon.class); // entity
               Pokemon pokemon = response.getBody();
       return pokemon;
 	}
