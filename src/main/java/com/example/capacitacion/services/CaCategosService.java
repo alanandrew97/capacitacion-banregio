@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.capacitacion.models.CaCatego;
+import com.example.capacitacion.entity.CaCatego;
 import com.example.capacitacion.repositories.CaCategosRepository;
 
 @Service

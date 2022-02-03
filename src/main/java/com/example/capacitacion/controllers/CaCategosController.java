@@ -1,4 +1,4 @@
-package com.example.capacitacion.constrollers;
+package com.example.capacitacion.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.capacitacion.models.CaCatego;
+import com.example.capacitacion.entity.CaCatego;
 import com.example.capacitacion.services.CaCategosService;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)

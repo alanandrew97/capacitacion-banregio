@@ -1,4 +1,4 @@
-package com.example.capacitacion.constrollers;
+package com.example.capacitacion.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.capacitacion.models.CaProduc;
+import com.example.capacitacion.entity.CaProduc;
 import com.example.capacitacion.services.CaProducsService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8090"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/products")
 public class CaProducsController {
@@ -28,7 +28,7 @@ public class CaProducsController {
 	private CaProducsService producService;
 	
 	@GetMapping
-	private ResponseEntity<List<CaProduc>> getCaProducs() {
+	public ResponseEntity<List<CaProduc>> getCaProducs() {
 		try {
 			return ResponseEntity.ok(producService.getAllProducs());
 		} catch (Exception e) {
@@ -37,7 +37,7 @@ public class CaProducsController {
 	}
 	
 	@GetMapping("/{id}")
-	private ResponseEntity<CaProduc> getCaProduc(@PathVariable int id) {
+	public ResponseEntity<CaProduc> getCaProduc(@PathVariable int id) {
 		try {
 			Optional<CaProduc> produc = producService.get(id);
 			return produc.isPresent() ? ResponseEntity.ok(produc.get()) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -47,7 +47,7 @@ public class CaProducsController {
 	}
 	
 	@PostMapping
-	private ResponseEntity<CaProduc> createCaProduc(@RequestBody CaProduc produc) {
+	public ResponseEntity<CaProduc> createCaProduc(@RequestBody CaProduc produc) {
 		try {
 			CaProduc newCaProduc = producService.create(produc);
 			
@@ -58,7 +58,7 @@ public class CaProducsController {
 	}
 	
 	@PutMapping("/{id}")
-	private ResponseEntity<CaProduc> updateCaProduc(@PathVariable int id, @RequestBody CaProduc produc) {
+	public ResponseEntity<CaProduc> updateCaProduc(@PathVariable int id, @RequestBody CaProduc produc) {
 		try {
 			produc.setProNumero(id);
 			CaProduc newCaProduc = producService.update(produc);
@@ -70,7 +70,7 @@ public class CaProducsController {
 	}
 	
 	@PatchMapping(path = "/{id}", consumes = "application/json-patch+json")
-	private ResponseEntity<CaProduc> patchCaProduc(@PathVariable int id, @RequestBody CaProduc produc) {
+	public ResponseEntity<CaProduc> patchCaProduc(@PathVariable int id, @RequestBody CaProduc produc) {
 		try {
 			CaProduc oldCaProduc = producService.get(id).get();
 			produc.setProNumero(id);
@@ -90,7 +90,7 @@ public class CaProducsController {
 	}
 
 	@DeleteMapping("/{id}")
-	private ResponseEntity<CaProduc> deleteCaProduc(@PathVariable int id) {
+	public ResponseEntity<CaProduc> deleteCaProduc(@PathVariable int id) {
 		try {
 			producService.delete(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

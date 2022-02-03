@@ -1,4 +1,4 @@
-package com.example.capacitacion.models;
+package com.example.capacitacion.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +9,12 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table (name="caproduc")
+@Table (name="cacatego")
 @Data
-public class CaProduc {
+public class CaCatego {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int proNumero;
-	
-	private int proNumcat;
-	private String proNombre;
+	private int catNumero;
+
+	private String catNombre;
 }
